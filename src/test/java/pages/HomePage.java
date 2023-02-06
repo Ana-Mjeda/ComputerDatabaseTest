@@ -20,6 +20,9 @@ public class HomePage extends BasePage {
     @FindAll({@FindBy(xpath = "//*[@id=\"main\"]/table/tbody/tr")})
     private List<WebElement> computerList;
 
+    @FindBy(xpath = "//*[@id=\"main\"]/h1")
+    private WebElement topHeaderMessage;
+
     public HomePage(WebDriver driver, WebDriverWait driverWait) {
         super(driver, driverWait);
     }
@@ -44,5 +47,11 @@ public class HomePage extends BasePage {
         }
         return true;
     }
+    public String getTopMessage(){
+        return topHeaderMessage.getText();
+    }
 
+    public List<WebElement> getComputerList() {
+        return computerList;
+    }
 }

@@ -38,9 +38,13 @@ public class SearchTest {
     public void searchTest(){
         String searchString = "ASCI";
         homePage.search(searchString);
+        int numberOfComputers = homePage.getComputerList().size();
         Assert.assertTrue(homePage.containsSearchString(searchString));
         Assert.assertTrue(driver.getCurrentUrl().endsWith("/computers?f="+searchString));
+        Assert.assertTrue(homePage.getTopMessage().startsWith(numberOfComputers+""));
     }
+
+
 
     @AfterClass
     public void afterClass(){
