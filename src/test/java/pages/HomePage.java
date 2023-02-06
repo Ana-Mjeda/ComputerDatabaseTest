@@ -23,6 +23,9 @@ public class HomePage extends BasePage {
     @FindBy(xpath = "//*[@id=\"main\"]/h1")
     private WebElement topHeaderMessage;
 
+    @FindBy(xpath = "//*[@id=\"pagination\"]/ul/li[2]/a")
+    private WebElement displayMessageUnderTable;
+
     public HomePage(WebDriver driver, WebDriverWait driverWait) {
         super(driver, driverWait);
     }
@@ -49,6 +52,9 @@ public class HomePage extends BasePage {
     }
     public String getTopMessage(){
         return topHeaderMessage.getText();
+    }
+    public String getTableMessage(){
+        return displayMessageUnderTable.getText();
     }
 
     public List<WebElement> getComputerList() {

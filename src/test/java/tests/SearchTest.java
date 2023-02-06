@@ -2,7 +2,6 @@ package tests;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -35,19 +34,19 @@ public class SearchTest {
     }
 
     @Test
-    public void searchTest(){
+    public void searchTest() {
         String searchString = "ASCI";
         homePage.search(searchString);
         int numberOfComputers = homePage.getComputerList().size();
         Assert.assertTrue(homePage.containsSearchString(searchString));
-        Assert.assertTrue(driver.getCurrentUrl().endsWith("/computers?f="+searchString));
-        Assert.assertTrue(homePage.getTopMessage().startsWith(numberOfComputers+""));
+        Assert.assertTrue(driver.getCurrentUrl().endsWith("/computers?f=" + searchString));
+        Assert.assertTrue(homePage.getTopMessage().startsWith(numberOfComputers + ""));
+        String expMsg = "Displaying 1 to " + numberOfComputers + " of " +numberOfComputers;
+        Assert.assertEquals(homePage.getTableMessage(), expMsg);
     }
 
-
-
     @AfterClass
-    public void afterClass(){
+    public void afterClass() {
         driver.quit();
     }
 }
