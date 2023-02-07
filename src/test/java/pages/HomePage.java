@@ -26,6 +26,12 @@ public class HomePage extends BasePage {
     @FindBy(xpath = "//*[@id=\"pagination\"]/ul/li[2]/a")
     private WebElement displayMessageUnderTable;
 
+    @FindBy(className = "alert-message")
+    private WebElement alert;
+
+    @FindBy(className = "add")
+    private WebElement addNewComputerButton;
+
     public HomePage(WebDriver driver, WebDriverWait driverWait) {
         super(driver, driverWait);
     }
@@ -59,5 +65,13 @@ public class HomePage extends BasePage {
 
     public List<WebElement> getComputerList() {
         return computerList;
+    }
+
+    public String getAlert(){
+        return alert.getText();
+    }
+
+    public void openAddPage(){
+        addNewComputerButton.click();
     }
 }
