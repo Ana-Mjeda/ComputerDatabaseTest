@@ -8,6 +8,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 import pages.HomePage;
 
 import java.time.Duration;
@@ -22,7 +23,6 @@ public class SearchTest {
 
     @BeforeClass
     public void beforeClass() {
-        //System.setProperty("webdriver.chrome.driver", "C:\\Users\\DELL\\Desktop\\Vezba\\chromedriver.exe");
         driver = new ChromeDriver();
         driverWait = new WebDriverWait(driver, Duration.ofSeconds(20));
         homePage = new HomePage(driver, driverWait);
@@ -34,15 +34,18 @@ public class SearchTest {
     }
 
     @Test
-    public void searchTest() {
+    public void searchTestSoftAssert() {
         String searchString = "ASCI";
         homePage.search(searchString);
         int numberOfComputers = homePage.getComputerList().size();
-        Assert.assertTrue(homePage.containsSearchString(searchString));
-        Assert.assertTrue(driver.getCurrentUrl().endsWith("/computers?f=" + searchString));
-        Assert.assertTrue(homePage.getTopMessage().startsWith(numberOfComputers + ""));
         String expMsg = "Displaying 1 to " + numberOfComputers + " of " +numberOfComputers;
-        Assert.assertEquals(homePage.getTableMessage(), expMsg);
+
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertTrue(homePage.containsSearchString(searchString));
+        softAssert.assertTrue(driver.getCurrentUrl().endsWith("/computers?f=" + searchString));
+        softAssert.assertTrue(homePage.getTopMessage().startsWith(numberOfComputers + ""));
+        softAssert.assertEquals(homePage.getTableMessage(), expMsg);
+        softAssert.assertAll();
     }
 
     @AfterClass
