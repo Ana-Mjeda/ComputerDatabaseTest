@@ -29,7 +29,7 @@ public class HomePage extends BasePage {
     @FindBy(className = "alert-message")
     private WebElement alert;
 
-    @FindBy(className = "add")
+    @FindBy(id = "add")
     private WebElement addNewComputerButton;
 
     public HomePage(WebDriver driver, WebDriverWait driverWait) {
@@ -56,10 +56,12 @@ public class HomePage extends BasePage {
         }
         return true;
     }
-    public String getTopMessage(){
+
+    public String getTopMessage() {
         return topHeaderMessage.getText();
     }
-    public String getTableMessage(){
+
+    public String getTableMessage() {
         return displayMessageUnderTable.getText();
     }
 
@@ -67,11 +69,11 @@ public class HomePage extends BasePage {
         return computerList;
     }
 
-    public String getAlert(){
+    public String getAlert() {
         return alert.getText();
     }
 
-    public void openAddPage(){
+    public void openAddPage() {
         addNewComputerButton.click();
     }
 }

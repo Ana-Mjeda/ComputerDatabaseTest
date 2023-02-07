@@ -9,25 +9,18 @@ public class AddNewComputer extends BaseTest{
 
     protected AddNewPage addNewPage;
 
-
-    @Override
     @BeforeClass
+    @Override
     public void beforeClass() {
         super.beforeClass();
         addNewPage = new AddNewPage(driver, driverWait);
     }
 
-
     @Test
     public void addComputerTest(){
+        homePage.openAddPage();
         String name = "Test";
-        addNewPage.fillForm(name, "2023-02-13", "2023-02-13", "RCA");
+        addNewPage.fillForm(name, "2023-02-13", "2023-02-15", "RCA");
         Assert.assertEquals(homePage.getAlert(), "Done ! Computer " + name + " has been created");
     }
-
-
-
-
-
-
 }
