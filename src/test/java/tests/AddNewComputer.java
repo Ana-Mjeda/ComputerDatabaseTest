@@ -1,27 +1,27 @@
 package tests;
 
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 import pages.AddNewPage;
-import pages.HomePage;
-
-import java.time.Duration;
 
 public class AddNewComputer extends BaseTest{
 
     protected AddNewPage addNewPage;
 
+
+    @Override
     @BeforeClass
     public void beforeClass() {
+        super.beforeClass();
         addNewPage = new AddNewPage(driver, driverWait);
     }
 
 
-
+    @Test
+    public void addComputerTest(){
+        String name = "Test";
+        addNewPage.fillForm(name, "2023-02-13", "2023-02-13", "RCA");
+    }
 
 
 
