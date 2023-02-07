@@ -12,25 +12,7 @@ import pages.HomePage;
 
 import java.time.Duration;
 
-public class SearchTest {
-
-    protected WebDriver driver;
-
-    protected WebDriverWait driverWait;
-
-    protected HomePage homePage;
-
-    @BeforeClass
-    public void beforeClass() {
-        driver = new ChromeDriver();
-        driverWait = new WebDriverWait(driver, Duration.ofSeconds(20));
-        homePage = new HomePage(driver, driverWait);
-    }
-
-    @BeforeMethod
-    public void beforeMethod() {
-        driver.get("http://computer-database.gatling.io/computers");
-    }
+public class SearchTest extends BaseTest{
 
     @Test
     public void searchTestSoftAssert() {
@@ -45,10 +27,5 @@ public class SearchTest {
         softAssert.assertTrue(homePage.getTopMessage().startsWith(numberOfComputers + ""));
         softAssert.assertEquals(homePage.getTableMessage(), expMsg);
         softAssert.assertAll();
-    }
-
-    @AfterClass
-    public void afterClass() {
-        driver.quit();
     }
 }

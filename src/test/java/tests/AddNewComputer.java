@@ -11,28 +11,15 @@ import pages.HomePage;
 
 import java.time.Duration;
 
-public class AddNewComputer{
-
-    protected WebDriver driver;
-
-    protected WebDriverWait driverWait;
-
-    protected HomePage homePage;
+public class AddNewComputer extends BaseTest{
 
     protected AddNewPage addNewPage;
 
     @BeforeClass
     public void beforeClass() {
-        driver = new ChromeDriver();
-        driverWait = new WebDriverWait(driver, Duration.ofSeconds(20));
-        homePage = new HomePage(driver, driverWait);
         addNewPage = new AddNewPage(driver, driverWait);
     }
 
-    @BeforeMethod
-    public void beforeMethod() {
-        driver.get("http://computer-database.gatling.io/computers");
-    }
 
 
 
@@ -40,8 +27,5 @@ public class AddNewComputer{
 
 
 
-    @AfterClass
-    public void afterClass() {
-        driver.quit();
-    }
+
 }
